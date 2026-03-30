@@ -3,7 +3,7 @@ package com.founderlink.apigateway.config;
 import jakarta.annotation.PostConstruct;
 
 import org.springdoc.core.properties.SwaggerUiConfigParameters;
-import org.springdoc.core.properties.SwaggerUiConfigProperties.SwaggerUrl;
+import org.springdoc.core.properties.SwaggerUiConfigParameters.SwaggerUrl;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,13 +22,9 @@ public class SwaggerAggregationConfig {
 
     @PostConstruct
     public void configureSwaggerUi() {
-        swaggerUiConfigParameters.clearUrls();
         swaggerServicesProperties.getServices().forEach(service -> {
-            SwaggerUrl swaggerUrl = new SwaggerUrl();
-            swaggerUrl.setName(service.getName());
-            swaggerUrl.setUrl(service.getUrl());
+            SwaggerUrl swaggerUrl = new SwaggerUrl(service.getName(), service.getUrl(), null);
             swaggerUiConfigParameters.addUrl(swaggerUrl);
         });
     }
 }
-

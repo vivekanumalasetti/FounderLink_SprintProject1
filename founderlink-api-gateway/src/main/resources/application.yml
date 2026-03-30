@@ -7,9 +7,17 @@ spring:
     config:
       fail-fast: true
     gateway:
-      default-filters:
-        - TokenRelay
       routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+        - id: auth-service-docs
+          uri: lb://auth-service
+          predicates:
+            - Path=/swagger/auth-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/auth-service/(?<segment>.*), /$\{segment}
         - id: user-service
           uri: lb://user-service
           predicates:
@@ -59,7 +67,7 @@ spring:
           predicates:
             - Path=/swagger/message-service/v3/api-docs
           filters:
-            - RewritePath=/swagger/message-service/(?<segment>.*), /${segment}
+            - RewritePath=/swagger/message-service/(?<segment>.*), /$\{segment}
         - id: notification-service
           uri: lb://notification-service
           predicates:
@@ -69,7 +77,7 @@ spring:
           predicates:
             - Path=/swagger/notification-service/v3/api-docs
           filters:
-            - RewritePath=/swagger/notification-service/(?<segment>.*), /${segment}
+            - RewritePath=/swagger/notification-service/(?<segment>.*), /$\{segment}
 
 springdoc:
   swagger-ui:
