@@ -5,6 +5,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/founderlink-config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/founderlink-eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/founderlink-auth-service/pom.xml" />
       </list>
     </option>
   </component>

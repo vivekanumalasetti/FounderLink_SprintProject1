@@ -1,0 +1,93 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "1. Config Server",
+            "request": "launch",
+            "mainClass": "com.founderlink.configserver.FounderlinkConfigServerApplication",
+            "projectName": "founderlink-config-server"
+        },
+        {
+            "type": "java",
+            "name": "2. Eureka Server",
+            "request": "launch",
+            "mainClass": "com.founderlink.eurekaserver.FounderlinkEurekaServerApplication",
+            "projectName": "founderlink-eureka-server"
+        },
+        {
+            "type": "java",
+            "name": "3. API Gateway",
+            "request": "launch",
+            "mainClass": "com.founderlink.apigateway.FounderlinkApiGatewayApplication",
+            "projectName": "founderlink-apigateway"
+        },
+        {
+            "type": "java",
+            "name": "4. Auth Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.authservice.FounderlinkAuthServiceApplication",
+            "projectName": "founderlink-auth-service"
+        },
+        {
+            "type": "java",
+            "name": "5. User Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.userservice.FounderlinkUserServiceApplication",
+            "projectName": "founderlink-user-service"
+        },
+        {
+            "type": "java",
+            "name": "6. Team Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.teamservice.FounderlinkTeamServiceApplication",
+            "projectName": "founderlink-team-service"
+        },
+        {
+            "type": "java",
+            "name": "7. Startup Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.startupservice.FounderlinkStartupServiceApplication",
+            "projectName": "founderlink-startup-service"
+        },
+        {
+            "type": "java",
+            "name": "8. Investment Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.investmentservice.FounderlinkInvestmentServiceApplication",
+            "projectName": "founderlink-investment-service"
+        },
+        {
+            "type": "java",
+            "name": "9. Messaging Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.messagingservice.FounderlinkMessagingServiceApplication",
+            "projectName": "founderlink-messaging-service"
+        },
+        {
+            "type": "java",
+            "name": "10. Notification Service",
+            "request": "launch",
+            "mainClass": "com.founderlink.notificationservice.FounderlinkNotificationServiceApplication",
+            "projectName": "founderlink-notification-service"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "🚀 Run All FounderLink Services",
+            "configurations": [
+                "1. Config Server",
+                "2. Eureka Server",
+                "3. API Gateway",
+                "4. Auth Service",
+                "5. User Service",
+                "6. Team Service",
+                "7. Startup Service",
+                "8. Investment Service",
+                "9. Messaging Service",
+                "10. Notification Service"
+            ],
+            "stopAll": true
+        }
+    ]
+}
