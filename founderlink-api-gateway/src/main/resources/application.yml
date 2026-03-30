@@ -1,10 +1,97 @@
 spring:
   application:
     name: api-gateway
-
   config:
     import: optional:configserver:http://localhost:8888
-
   cloud:
     config:
       fail-fast: true
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+        - id: user-service-docs
+          uri: lb://user-service
+          predicates:
+            - Path=/swagger/user-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/user-service/(?<segment>.*), /$\{segment}
+        - id: team-service
+          uri: lb://team-service
+          predicates:
+            - Path=/teams/**
+        - id: team-service-docs
+          uri: lb://team-service
+          predicates:
+            - Path=/swagger/team-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/team-service/(?<segment>.*), /$\{segment}
+        - id: startup-service
+          uri: lb://startup-service
+          predicates:
+            - Path=/startups/**
+        - id: startup-service-docs
+          uri: lb://startup-service
+          predicates:
+            - Path=/swagger/startup-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/startup-service/(?<segment>.*), /$\{segment}
+        - id: investment-service
+          uri: lb://investment-service
+          predicates:
+            - Path=/investments/**
+        - id: investment-service-docs
+          uri: lb://investment-service
+          predicates:
+            - Path=/swagger/investment-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/investment-service/(?<segment>.*), /$\{segment}
+        - id: message-service
+          uri: lb://messaging-service
+          predicates:
+            - Path=/messages/**
+        - id: message-service-docs
+          uri: lb://messaging-service
+          predicates:
+            - Path=/swagger/message-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/message-service/(?<segment>.*), /${segment}
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/notifications/**
+        - id: notification-service-docs
+          uri: lb://notification-service
+          predicates:
+            - Path=/swagger/notification-service/v3/api-docs
+          filters:
+            - RewritePath=/swagger/notification-service/(?<segment>.*), /${segment}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    urls: []
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+swagger:
+  services:
+    - name: Auth Service
+      url: /swagger/auth-service/v3/api-docs
+    - name: User Service
+      url: /swagger/user-service/v3/api-docs
+    - name: Team Service
+      url: /swagger/team-service/v3/api-docs
+    - name: Startup Service
+      url: /swagger/startup-service/v3/api-docs
+    - name: Investment Service
+      url: /swagger/investment-service/v3/api-docs
+    - name: Message Service
+      url: /swagger/message-service/v3/api-docs
+    - name: Notification Service
+      url: /swagger/notification-service/v3/api-docs
